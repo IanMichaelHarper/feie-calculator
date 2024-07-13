@@ -19,6 +19,9 @@ body {
 
 h1 {
     color: #333;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 form {
@@ -71,6 +74,9 @@ button:hover {
 
 h2 {
     color: #5cb85c;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 p {

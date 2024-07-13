@@ -1,6 +1,6 @@
 package com.feie.calculator.controllers;
 
-import com.feie.calculator.models.ContactForm;
+import com.feie.calculator.models.IncomeForm;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -16,12 +16,12 @@ public class HomeController {
 
     @GetMapping("/")
     public String home(Model model) {
-        model.addAttribute("contactForm", new ContactForm());
+        model.addAttribute("incomeForm", new IncomeForm());
         return HOME;
     }
 
     @PostMapping("/submit")
-    public String submitForm(@Valid @ModelAttribute ContactForm contactForm, BindingResult result, Model model) {
+    public String submitForm(@Valid @ModelAttribute IncomeForm incomeForm, BindingResult result, Model model) {
         if (result.hasErrors()) {
             return HOME;
         }
