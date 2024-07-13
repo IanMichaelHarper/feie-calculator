@@ -1,17 +1,31 @@
 package com.feie.calculator.controllers;
 
+import com.feie.calculator.models.ContactForm;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import jakarta.validation.Valid;
 
 @Controller
 public class HomeController {
 
     @GetMapping("/")
-    public String home() {
+    public String home(Model model) {
+        model.addAttribute("contactForm", new ContactForm());
         return "home";
+    }
+
+    @PostMapping("/submit")
+    public String submitForm(@Valid @ModelAttribute ContactForm contactForm, BindingResult result, Model model) {
+        if (result.hasErrors()) {
+            return "home";
+        }
+        // Process the form data (e.g., save to the database)
+        model.addAttribute("message", "Form submitted successfully!");
+        return "result";
     }
 
 }
