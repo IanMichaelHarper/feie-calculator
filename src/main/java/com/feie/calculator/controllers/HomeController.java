@@ -9,23 +9,26 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import jakarta.validation.Valid;
 
+import static com.feie.calculator.ViewTemplateName.HOME;
+
 @Controller
 public class HomeController {
 
     @GetMapping("/")
     public String home(Model model) {
         model.addAttribute("contactForm", new ContactForm());
-        return "home";
+        return HOME;
     }
 
     @PostMapping("/submit")
     public String submitForm(@Valid @ModelAttribute ContactForm contactForm, BindingResult result, Model model) {
         if (result.hasErrors()) {
-            return "home";
+            return HOME;
         }
         // Process the form data (e.g., save to the database)
         model.addAttribute("message", "Form submitted successfully!");
-        return "result";
+        model.addAttribute("submitted", true);
+        return HOME;
     }
 
 }
