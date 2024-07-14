@@ -13,7 +13,7 @@
     <div class="form-container">
 <!--    TODO: Make year here variable to current year (or something) -->
         <h2>Enter your earned income for the 2024 tax year</h2>
-        <form th:action="@{/form}" th:object="${incomeForm}" method="post">
+        <form th:action="@{/submit}" th:object="${incomeForm}" method="post">
             <div class="form-group">
                 <label for="income">Income:</label>
                 <input type="text" id="income" income="income" th:field="*{income}" />
@@ -26,7 +26,25 @@
             <h2>Form submitted successfully!</h2>
             <p><strong>Income:</strong> <span th:text="${incomeForm.income}"></span></p>
         </div>
-
+        <div th:if="${taxResults}">
+            <h2 class="mt-3">Results</h2>
+            <div class="result-box">
+                <h3 class="result-header">Tax Results</h3>
+                <div class="result-row">
+                    <span class="result-label">Income after FEIE:</span>
+                    <span class="result-value" th:text="${taxResults.incomeAfterFEIE}">0</span>
+                </div>
+                <div class="result-row">
+                    <span class="result-label">Federal Tax:</span>
+                    <span class="result-value" th:text="${taxResults.federalTax}">0</span>
+                </div>
+                <div class="result-row">
+                    <span class="result-label">Income after Tax:</span>
+                    <span class="result-value" th:text="${taxResults.incomeAfterTax}">0</span>
+                </div>
+            </div>
+        </div>
+    </div>
 </main>
 </body>
 </html>
