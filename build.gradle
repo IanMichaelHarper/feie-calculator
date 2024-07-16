@@ -1,5 +1,6 @@
 plugins {
 	id 'java'
+	id 'application'
 	id 'org.springframework.boot' version '3.3.1'
 	id 'io.spring.dependency-management' version '1.1.5'
 }
@@ -28,4 +29,16 @@ dependencies {
 
 tasks.named('test') {
 	useJUnitPlatform()
+}
+
+// tried to use this to make a jar to run on salmon
+application {
+  // Define the main class for the application.
+  mainClass = 'com.feie.calculator.FeieCalculatorApplication'
+}
+
+bootJar {
+    manifest {
+        attributes 'Main-Class': application.mainClass
+    }
 }

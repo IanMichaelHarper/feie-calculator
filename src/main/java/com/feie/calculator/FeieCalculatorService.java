@@ -52,31 +52,34 @@ public class FeieCalculatorService {
             if (taxableIncome <= bracket[1]) {
 
 //                log.info(String.format("taxableIncome %,.2f * bracket[0] %,.2f "), taxableIncome, bracket[0]);
-                federalTax += taxableIncome * bracket[0];
+                double thisRemainingTax = taxableIncome * bracket[0];
+                federalTax += thisRemainingTax;
+//                if (taxableIncome < FEIEAmount) {
+//                    feieRebate += thisRemainingTax;
+//                }
                 break;
             }
 //            log.info(String.format("bracket[1] %,.2f * bracket[0] %,.2f"), bracket[1], bracket[0]);
-            federalTax += bracket[1] * bracket[0];
+            double thisTax = bracket[1] * bracket[0];
+            federalTax += thisTax;
+            if (bracket[1] < FEIEAmount) {
+                feieRebate += thisTax;
+            }
+
             taxableIncome -= bracket[1];
         }
 
-        if (income < FEIEAmount) {
-            feieRebate = federalTax;
-        }
-        else {
-            // TODO implement
-        }
-        double incomeAfterFEIE = Math.min(income, FEIEAmount);
-        double incomeAfterTax = incomeAfterFEIE - federalTax;
+//        double incomeAfterFEIE = Math.min(income, FEIEAmount);
+        double incomeAfterTax = income - federalTax;
 
         System.out.printf("Income after FEIE and federal tax: $%.2f%n", incomeAfterTax);
         System.out.printf("Federal tax: $%.2f%n", federalTax);
-        System.out.printf("Tax without FEIE: $%.2f%n", income * 0.24);
+//        System.out.printf("Tax without FEIE: $%.2f%n", income * 0.24);
 
         TaxResults taxResults = new TaxResults();
-        taxResults.setIncomeAfterFEIE(incomeAfterFEIE);
         taxResults.setFederalTax(federalTax);
         taxResults.setIncomeAfterTax(incomeAfterTax);
+        taxResults.setIncomeAfterFEIE(incomeAfterTax + feieRebate);
 
         return taxResults;
     }
