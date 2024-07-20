@@ -1,6 +1,8 @@
-# FEIE Calculator (WIP)
-![image](https://github.com/user-attachments/assets/3a06997b-a8b4-4827-8d74-8465ec93cb38)
+# FEIE Calculator 
+![img.png](img.png)
 
 Calculates how much tax you owe when taking advantage of the Foreign Earned Income Exclusion Principle.
 
-Very much still a work in progress and should not be used for filing actual tax returns.
+Still a bit of a work in progress and should not be used for filing actual tax returns.
+
+To see if you are eligble for the FEIE, check out https://feiecalc.com/

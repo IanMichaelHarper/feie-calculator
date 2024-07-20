@@ -13,10 +13,10 @@
     <div class="form-container">
 <!--    TODO: Make year here variable to current year (or something) -->
         <h2>Enter your earned income for the 2024 tax year</h2>
-        <h3>In 2024, your first $126,500 is tax free</h3>
+        <h3>In 2024, your first $126,500 is tax free!</h3>
         <form th:action="@{/submit}" th:object="${incomeForm}" method="post">
             <div class="form-group">
-                <label for="income">Income:</label>
+                <label for="income">Earned Income:</label>
                 <input type="text" id="income" income="income" th:field="*{income}" />
                 <span class="error" th:if="${#fields.hasErrors('income')}" th:errors="*{income}">income is required</span>
             </div>
@@ -24,23 +24,22 @@
         </form>
 
         <div th:if="${submitted}">
-            <p><strong>Income:</strong> <span th:text="${incomeForm.income}"></span></p>
+            <p><strong>Earned Income:  $</strong> <span th:text="${#numbers.formatDecimal(incomeForm.income, 0, 'COMMA', 2, 'POINT')}"></span></p>
         </div>
         <div th:if="${taxResults}">
             <h2 class="mt-3">Results</h2>
             <div class="result-box">
-                <h3 class="result-header">Tax Results</h3>
+<!--                <div class="result-row">-->
+<!--                    <span class="result-label">Federal Tax:</span>-->
+<!--                    <span class="result-value" th:text="${taxResults.federalTax}">0</span>-->
+<!--                </div>-->
                 <div class="result-row">
-                    <span class="result-label">Federal Tax:</span>
-                    <span class="result-value" th:text="${taxResults.federalTax}">0</span>
+                    <span class="result-label">Income after federal tax without FEIE:  $</span>
+                    <span class="result-value" th:text="${#numbers.formatDecimal(taxResults.incomeAfterTaxWithoutFEIE, 0, 'COMMA', 2, 'POINT')}">0</span>
                 </div>
                 <div class="result-row">
-                    <span class="result-label">Income after Tax:</span>
-                    <span class="result-value" th:text="${taxResults.incomeAfterTax}">0</span>
-                </div>
-                <div class="result-row">
-                    <span class="result-label">Income after Tax with FEIE:</span>
-                    <span class="result-value" th:text="${taxResults.incomeAfterTaxWithFEIE}">0</span>
+                    <span class="result-label">Income after federal tax with FEIE:  $</span>
+                    <span class="result-value" th:text="${#numbers.formatDecimal(taxResults.incomeAfterTaxWithFEIE, 0, 'COMMA', 2, 'POINT')}">0</span>
                 </div>
             </div>
         </div>

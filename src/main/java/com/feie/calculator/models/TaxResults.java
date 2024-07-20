@@ -3,7 +3,7 @@ package com.feie.calculator.models;
 public class TaxResults {
     private double incomeAfterTaxWithFEIE;
     private double federalTax;
-    private double incomeAfterTax;
+    private double incomeAfterTaxWithoutFEIE;
 
     // Getters and setters
     public double getIncomeAfterTaxWithFEIE() {
@@ -22,11 +22,11 @@ public class TaxResults {
         this.federalTax = federalTax;
     }
 
-    public double getIncomeAfterTax() {
-        return incomeAfterTax;
+    public double getIncomeAfterTaxWithoutFEIE() {
+        return incomeAfterTaxWithoutFEIE;
     }
 
-    public void setIncomeAfterTax(double incomeAfterTax) {
-        this.incomeAfterTax = incomeAfterTax;
+    public void setIncomeAfterTaxWithoutFEIE(double incomeAfterTax) {
+        this.incomeAfterTaxWithoutFEIE = incomeAfterTax;
     }
 }
