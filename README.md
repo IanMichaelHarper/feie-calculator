@@ -3,4 +3,4 @@
 
 Calculates how much tax you owe when taking advantage of the Foreign Earned Income Exclusion Principle.
 
-Very much still a work in progress
+Very much still a work in progress and should not be used for filing actual tax returns.
